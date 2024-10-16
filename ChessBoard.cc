@@ -76,6 +76,6 @@ bool ChessBoard::isValidMove(int fromRow, int fromColumn, int toRow, int toColum
     }
     return false;
     }
-bool isPieceUnderThreat(int row, int column){ return true;}
+bool ChessBoard::isPieceUnderThreat(int row, int column){ return true;}
 
 
