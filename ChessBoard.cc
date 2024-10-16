@@ -3,7 +3,7 @@
 #include "RookPiece.hh"
 #include "BishopPiece.hh"
 #include "KingPiece.hh"
-
+#include <iostream>
 using Student::ChessBoard;
 
 std::ostringstream ChessBoard::displayBoard()
@@ -46,16 +46,28 @@ std::ostringstream ChessBoard::displayBoard()
 
     return outputString;
 }
-ChessBoard::ChessBoard(int numRow, int numCol){
-    board.resize(numRows, std::vector<ChessPiece*>(numCols,nullptr));
+ChessBoard::ChessBoard(int numRow, int numCol) {
+    numRows = numRow;  
+    numCols = numCol;  
+    board.resize(numRows, std::vector<ChessPiece*>(numCols, nullptr));
 }
 
+
 void ChessBoard::createChessPiece(Color col, Type ty, int startRow, int StartColumn){
+   /* std::cout << "startRow: " << startRow << ", StartColumn: " << StartColumn << std::endl;
+std::cout << "Type: " << ty << ", Color: " << col << std::endl;
+        ChessBoard* boardPtr = dynamic_cast<ChessBoard*>(this);
+        if (boardPtr) {
+            std::cout << "*this is a ChessBoard instance." << std::endl;
+        } else {
+            std::cout << "*this is NOT a ChessBoard instance." << std::endl;
+        }*/
     if(ty == Type::Pawn) { 
         board[startRow][StartColumn] = new PawnPiece(*this, col, startRow, StartColumn);
     }else if(ty == Type::Rook) { 
+       // std::cout <<"in rook"<< std::endl;
         board[startRow][StartColumn] = new RookPiece(*this, col, startRow, StartColumn);
-    }else if(ty == Type::Bishop){
+   }else if(ty == Type::Bishop){
         board[startRow][StartColumn] = new BishopPiece(*this, col, startRow, StartColumn);
     }
 }

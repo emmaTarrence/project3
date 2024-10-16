@@ -5,7 +5,7 @@
 #include <iostream>
 
 namespace Student{
-        void RookPiece::setPosition(int row, int column) { \
+        void RookPiece::setPosition(int row, int column) {
         this->row = row; 
         this->column = column;
         }

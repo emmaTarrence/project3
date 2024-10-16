@@ -12,7 +12,7 @@ namespace Student
     class RookPiece : public ChessPiece
     {
         public:
-                RookPiece(ChessBoard &board, Color color, int row, int column)
+        RookPiece(ChessBoard &board, Color color, int row, int column)
             : ChessPiece(board, color, row, column) {}
         void setPosition(int row, int column)override;
         bool canMoveToLocation(int toRow, int toColumn)override; 
