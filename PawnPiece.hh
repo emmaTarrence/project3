@@ -11,6 +11,14 @@ namespace Student
 {
     class PawnPiece : public ChessPiece
     {
+        void setPosition(int row, int column);
+        bool canMoveToLocation(int toRow, int toColumn); 
+        Type getType() {  
+            return Type::Pawn; 
+        }
+                    const char *toString() override {
+        return "♙"; 
+            }
     };
 }
 

@@ -46,3 +46,10 @@ std::ostringstream ChessBoard::displayBoard()
 
     return outputString;
 }
+ChessBoard::ChessBoard(int numRow, int numCol){}
+void ChessBoard::createChessPiece(Color col, Type ty, int startRow, int StartColumn){}
+bool movePiece(int fromRow, int fromColumn, int toRow, int toColumn) {
+    return true;
+}
+//bool isValidMove(int fromRow, int fromColumn, int toRow, int toColumn) {}
+//bool isPieceUnderThreat(int row, int column){}

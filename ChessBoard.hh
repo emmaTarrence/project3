@@ -25,6 +25,7 @@ namespace Student
         std::vector<std::vector<ChessPiece *>> board;
 
     public:
+    
         /**
          * @brief
          * Allocates memory on the heap for the board.

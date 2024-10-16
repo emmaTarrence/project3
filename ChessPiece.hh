@@ -44,7 +44,9 @@
      * would have been to define this function as pure virtual and
      * let each derived class override this function.
      */
-    Type getType();
+    Type getType(){
+      return Type::Pawn;
+    }
 
     /**
      * @return
@@ -90,6 +92,13 @@
      * A unicode representation of the piece.
      */
     virtual const char *toString() = 0;
+
+    ChessBoard &board;
+    Color color; 
+    int row;
+    int column; 
+    private: 
+
   };
 }
 

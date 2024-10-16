@@ -11,7 +11,16 @@ namespace Student
 {
     class RookPiece : public ChessPiece
     {
+        void setPosition(int row, int column);
+        bool canMoveToLocation(int toRow, int toColumn); 
+        Type getType() {  
+            return Type::Rook; 
+        }
+                    const char *toString() override {
+        return "♖"; 
+            }
     };
 }
+
 
 #endif
