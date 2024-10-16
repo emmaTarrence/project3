@@ -46,12 +46,36 @@ std::ostringstream ChessBoard::displayBoard()
 
     return outputString;
 }
-ChessBoard::ChessBoard(int numRow, int numCol){}
-void ChessBoard::createChessPiece(Color col, Type ty, int startRow, int StartColumn){}
-bool movePiece(int fromRow, int fromColumn, int toRow, int toColumn) {
-    return true;
+ChessBoard::ChessBoard(int numRow, int numCol){
+    board.resize(numRows, std::vector<ChessPiece*>(numCols,nullptr));
 }
-bool isValidMove(int fromRow, int fromColumn, int toRow, int toColumn){return false;}
+
+void ChessBoard::createChessPiece(Color col, Type ty, int startRow, int StartColumn){
+    if(ty == Type::Pawn) { 
+        board[startRow][StartColumn] = new PawnPiece(*this, col, startRow, StartColumn);
+    }else if(ty == Type::Rook) { 
+        board[startRow][StartColumn] = new RookPiece(*this, col, startRow, StartColumn);
+    }else if(ty == Type::Bishop){
+        board[startRow][StartColumn] = new BishopPiece(*this, col, startRow, StartColumn);
+    }
+}
+
+bool ChessBoard::movePiece(int fromRow, int fromColumn, int toRow, int toColumn) {
+    if (this->isValidMove(fromRow, fromColumn, toRow, toColumn)) {
+        board[toRow][toColumn] = board[fromRow][fromColumn];
+        board[fromRow][fromColumn] = nullptr;
+        return true;
+    }
+    return false;
+}
+
+bool ChessBoard::isValidMove(int fromRow, int fromColumn, int toRow, int toColumn){
+    ChessPiece* piece = board[fromRow][fromColumn];
+    if(piece !=nullptr) {
+        return piece->canMoveToLocation(toRow, toColumn);
+    }
+    return false;
+    }
 bool isPieceUnderThreat(int row, int column){ return true;}
 
 //bool isValidMove(int fromRow, int fromColumn, int toRow, int toColumn) {}
