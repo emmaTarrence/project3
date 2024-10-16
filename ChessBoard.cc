@@ -51,5 +51,8 @@ void ChessBoard::createChessPiece(Color col, Type ty, int startRow, int StartCol
 bool movePiece(int fromRow, int fromColumn, int toRow, int toColumn) {
     return true;
 }
+bool isValidMove(int fromRow, int fromColumn, int toRow, int toColumn){return false;}
+bool isPieceUnderThreat(int row, int column){ return true;}
+
 //bool isValidMove(int fromRow, int fromColumn, int toRow, int toColumn) {}
 //bool isPieceUnderThreat(int row, int column){}

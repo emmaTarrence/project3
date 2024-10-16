@@ -97,8 +97,6 @@
     Color color; 
     int row;
     int column; 
-    private: 
-
   };
 }
 

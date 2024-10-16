@@ -11,8 +11,12 @@ namespace Student
 {
     class BishopPiece : public ChessPiece
     {
-        void setPosition(int row, int column);
-        bool canMoveToLocation(int toRow, int toColumn); 
+        public:
+         BishopPiece(ChessBoard &board, Color color, int row, int column)
+            : ChessPiece(board, color, row, column) {}
+
+        void setPosition(int row, int column)override;
+        bool canMoveToLocation(int toRow, int toColumn)override; 
         Type getType() {  
             return Type::Bishop; 
         }

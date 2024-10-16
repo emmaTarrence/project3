@@ -12,11 +12,7 @@ ChessPiece::ChessPiece(ChessBoard &board, Color color, int row, int column)
 Color Student::ChessPiece::getColor() {
     return color;
 }
-//ChessPiece::~ChessPiece(){}
 
-/*Color getColor(){
-    return color;
-} */
 const char* toString() {
     return 0;
 
@@ -27,5 +23,8 @@ int ChessPiece::getRow() {
 }
 int ChessPiece::getColumn() {
     return column;
+}
+void setPosition(int row, int column){
+
 }
 }
