@@ -13,18 +13,19 @@ Color Student::ChessPiece::getColor() {
     return color;
 }
 
-const char* toString() {
-    return 0;
+/*const char* toString() {
+    return nullptr;   
+}*/
 
-    
-}
 int ChessPiece::getRow() {
     return row;
 }
 int ChessPiece::getColumn() {
     return column;
 }
-void setPosition(int row, int column){
-
+void ChessPiece::setPosition(int row, int column) {
+    this->row = row;
+    this->column = column;
 }
+
 }
