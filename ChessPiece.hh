@@ -92,7 +92,20 @@
      * A unicode representation of the piece.
      */
     virtual const char *toString() = 0;
+bool movePiece(int fromRow, int fromCol, int toRow, int toCol) {
+    // Implementation of movePiece
+    return true;  // Placeholder implementation
+}
 
+bool isValidMove(int fromRow, int fromCol, int toRow, int toCol) {
+    // Implementation of isValidMove
+    return true;  // Placeholder implementation
+}
+
+bool isPieceUnderThreat(int row, int col) {
+    // Implementation of isPieceUnderThreat
+    return false;  // Placeholder implementation
+}
     ChessBoard &board;
     Color color; 
     int row;
