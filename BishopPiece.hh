@@ -17,7 +17,7 @@ namespace Student
 
         void setPosition(int row, int column)override;
         bool canMoveToLocation(int toRow, int toColumn)override; 
-        Type getType() {  
+        Type getType() override{  
             return Type::Bishop; 
         }
             const char *toString() override {

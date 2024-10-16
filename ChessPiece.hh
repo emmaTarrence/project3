@@ -44,7 +44,7 @@
      * would have been to define this function as pure virtual and
      * let each derived class override this function.
      */
-    Type getType(){
+    virtual Type getType(){
       return Type::Pawn;
     }
 

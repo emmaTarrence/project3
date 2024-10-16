@@ -16,7 +16,7 @@ namespace Student
             : ChessPiece(board, color, row, column) {}
         void setPosition(int row, int column)override;
         bool canMoveToLocation(int toRow, int toColumn)override; 
-        Type getType() {  
+        Type getType() override{  
             return Type::Rook; 
         }
                     const char *toString() override {
