@@ -10,7 +10,7 @@ namespace Student{
         this->column = column;
         }
         bool RookPiece::canMoveToLocation(int toRow, int toColumn) { 
-     //       std::cout<<"in Rook"<< std::endl;
+            std::cout<<"in Rook"<< std::endl;
       //                  std::cout<< row << toRow << std::endl;
                   if(toRow > board.getNumRows() || toColumn > board.getNumCols() || toColumn < 0 || toRow < 0){
         return 0; 

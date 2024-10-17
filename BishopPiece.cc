@@ -10,6 +10,7 @@ namespace Student{
         this->column = column;
         }
         bool BishopPiece::canMoveToLocation(int toRow, int toColumn) { 
+        //    std::cout<<"in Bishop"<< std::endl;
     
             //std::cout <<"row:"<< row<< "to row: "<< toRow<< std::endl;
             //std::cout <<"column:"<< column<< "to column: "<< toColumn<< std::endl;
