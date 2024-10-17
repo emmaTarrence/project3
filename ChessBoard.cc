@@ -80,14 +80,14 @@ bool ChessBoard::movePiece(int fromRow, int fromColumn, int toRow, int toColumn)
     }
     return false;
 }
-/*
-   ChessBoard::~ChessBoard(){
-    for( int i = numRows; i >= 0 ; i--) { 
-        for(int j = numCols; j>= 0; j--){
-        delete board[i][j];
+ChessBoard::~ChessBoard() {
+    for (int i = 0; i < numRows; ++i) {
+        for (int j = 0; j < numCols; ++j) {
+            delete board[i][j];
         }
+       // delete[] board;
     }
-   }*/
+}
 bool ChessBoard::isValidMove(int fromRow, int fromColumn, int toRow, int toColumn){
     ChessPiece* piece = board[fromRow][fromColumn];
     if((fromRow == toRow) &&( fromColumn == toColumn)) return 0;
