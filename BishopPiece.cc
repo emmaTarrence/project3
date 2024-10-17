@@ -17,7 +17,7 @@ namespace Student{
         return 0; 
       }
             if(row == toRow && column == toColumn){ 
-                std::cout << "didnt move if" <<std::endl;
+             //   std::cout << "didnt move if" <<std::endl;
                 return 0;
             } 
             if((abs(row-toRow)) == (abs(column - toColumn))){ 
