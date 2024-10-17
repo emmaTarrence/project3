@@ -19,7 +19,7 @@ namespace Student{
             if(row == toRow && column == toColumn){ 
                   return 0;
             } 
-            if((abs(row-toRow)) == (abs(column - toColumn))){ 
+            if((abs(toRow-row)) == (abs(toColumn-column))){ 
                 return 1;
             }
             return 0;
