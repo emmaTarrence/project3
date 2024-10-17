@@ -18,12 +18,29 @@ namespace Student{
                   return 0;
             } 
             if((abs(toRow-row)) == (abs(toColumn-column))){ 
+                            int stepRow = (toRow > row) ? 1 : -1;
+            int stepColumn = (toColumn > column) ? 1 : -1;
+
+            int currentRow = row + stepRow;
+            int currentColumn = column + stepColumn;
+            while(currentRow != toRow || currentColumn != toColumn){
+                ChessPiece* pieceInPath = board.getPiece(currentRow, currentColumn);
+                if(pieceInPath != nullptr){
+                    if(pieceInPath->color == color) { 
+                        return 0;
+                    }
+                }
+                    currentRow += stepRow;
+                    currentColumn+= stepColumn;
+                }
                     if((board.getPiece(toRow, toColumn) != nullptr)){
                         if(board.getPiece(toRow, toColumn)->color == color) { 
                             return 0; 
                         }
-                        return 1;
+                     
                     }
+                       return 1;
+                       
             }
             
             return 0;
