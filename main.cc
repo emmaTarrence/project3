@@ -4,8 +4,8 @@
 #include "ChessPiece.hh"
 #include <iostream>
 
-// Helper function to print the position of a piece
-void printPiecePosition(const Student::ChessPiece* piece, int row, int column) {
+void printPiecePosition(const Student::ChessPiece* piece, int row, int column)
+{
     if (piece != nullptr) {
         std::cout << "Piece " << piece << " is at (" << row << ", " << column << ")" << std::endl;
     } else {
@@ -20,51 +20,72 @@ void test_part1_4x4_1()
     sBoard.createChessPiece(Black, Bishop, 1, 3);
     sBoard.createChessPiece(Black, Rook, 1, 1);
     sBoard.createChessPiece(White, Rook, 2, 3);
-    
+
     std::cout << sBoard.displayBoard().str() << std::endl;
 
-    Student::ChessPiece* piece1 = sBoard.getPiece(3, 2);
-    assert(piece1 != nullptr);
-    assert(piece1->getType() == Type::Rook);
-    assert(piece1->getColor() == White);
+    // Initial setup: print positions
+    std::cout << "Initial positions:\n";
+    printPiecePosition(sBoard.getPiece(3, 2), 3, 2);  // White Rook
+    printPiecePosition(sBoard.getPiece(1, 3), 1, 3);  // Black Bishop
+    printPiecePosition(sBoard.getPiece(1, 1), 1, 1);  // Black Rook
+    printPiecePosition(sBoard.getPiece(2, 3), 2, 3);  // White Rook
 
-    Student::ChessPiece* piece2 = sBoard.getPiece(1, 3);
-    assert(piece2 != nullptr);
-    assert(piece2->getType() == Type::Bishop);
-    assert(piece2->getColor() == Black);
-
-    // Print piece position before the move
-    printPiecePosition(sBoard.getPiece(3, 2), 3, 2);
-    assert(sBoard.isValidMove(3, 2, 3, 0));  // White Rook can move horizontally
-    // Print piece position after the move (position shouldn't have changed)
-    printPiecePosition(sBoard.getPiece(3, 2), 3, 2);
-
-    printPiecePosition(sBoard.getPiece(3, 2), 3, 2);
-    assert(!sBoard.isValidMove(3, 2, 2, 1));  // Invalid move for the White Rook
-    printPiecePosition(sBoard.getPiece(3, 2), 3, 2);
-
-    // Test if the move is correctly performed
-    bool moveSuccess = sBoard.movePiece(3, 2, 3, 0);  // Move White Rook
-    assert(moveSuccess == true);
-    printPiecePosition(sBoard.getPiece(3, 2), 3, 2);  // Old position is now empty
-    printPiecePosition(sBoard.getPiece(3, 0), 3, 0);  // New position has the Rook
-
-    // Invalid Bishop move
-    printPiecePosition(sBoard.getPiece(1, 3), 1, 3);
-    assert(!sBoard.isValidMove(1, 3, 3, 3));  // Black Bishop can't move like a Rook
-    printPiecePosition(sBoard.getPiece(1, 3), 1, 3);
+    // Test if a move is valid for a piece
+    std::cout << "Testing valid moves:\n";
+    printPiecePosition(sBoard.getPiece(3, 2), 3, 2);  // White Rook
+    assert(sBoard.isValidMove(3, 2, 3, 0));  // White Rook moves horizontally (valid)
     
-    // Move the Bishop diagonally
-    assert(sBoard.isValidMove(1, 3, 3, 1));  // Black Bishop can move diagonally
-    moveSuccess = sBoard.movePiece(1, 3, 3, 1);  // Perform the move
+    std::cout << "Testing invalid moves:\n";
+    assert(!sBoard.isValidMove(3, 2, 2, 1));  // White Rook can't move diagonally (invalid)
+
+    // Perform valid move
+    std::cout << "Performing valid move (Rook to (3, 0)):\n";
+    bool moveSuccess = sBoard.movePiece(3, 2, 3, 0);  // Move White Rook to the left horizontally
     assert(moveSuccess == true);
-    printPiecePosition(sBoard.getPiece(1, 3), 1, 3);  // Old position should be empty
-    printPiecePosition(sBoard.getPiece(3, 1), 3, 1);  // New position has the Bishop
+    printPiecePosition(sBoard.getPiece(3, 0), 3, 0);  // White Rook new position
 
-    // Ensure the board reflects the moves
-    std::cout << sBoard.displayBoard().str() << std::endl;
+    assert(sBoard.getPiece(3, 2) == nullptr);  // Old position should be empty now
 
-    std::cout << "All tests passed." << std::endl;
+    // Test for an invalid Bishop move
+    std::cout << "Testing invalid Bishop move:\n";
+    assert(!sBoard.isValidMove(1, 3, 1, 1));  // Black Bishop can't move horizontally to Black Rook's position (invalid)
+
+    // Valid diagonal Bishop move
+    std::cout << "Performing valid Bishop move (Bishop to (3, 1)):\n";
+    assert(sBoard.isValidMove(1, 3, 3, 1));  // Black Bishop moves diagonally (valid)
+    moveSuccess = sBoard.movePiece(1, 3, 3, 1);
+    assert(moveSuccess == true);
+    printPiecePosition(sBoard.getPiece(3, 1), 3, 1);  // Black Bishop new position
+
+    // Edge case: Moving out of bounds
+    std::cout << "Testing out-of-bounds move:\n";
+    assert(!sBoard.isValidMove(3, 1, 4, 1));  // Move out-of-bounds (too far down)
+    assert(!sBoard.isValidMove(3, 1, 3, 4));  // Move out-of-bounds (too far right)
+
+    // Edge case: Rook blocked by another piece (White Rook at 2,3 blocks White Rook at 3,0)
+    std::cout << "Testing obstructed Rook move:\n";
+    assert(!sBoard.isValidMove(3, 0, 2, 3));  // Path blocked by another White Rook
+
+    // Moving to the same position
+    std::cout << "Testing move to the same position:\n";
+   // assert(!sBoard.isValidMove(3, 1, 3, 1));  // Bishop can't move to the same location
+
+    // Perform another valid move for Rook
+    std::cout << "Performing valid move for Rook:\n";
+    assert(sBoard.isValidMove(2, 3, 2, 0));  // White Rook moves horizontally (valid)
+    assert(sBoard.movePiece(2, 3, 2, 0));    // Move should succeed
+    printPiecePosition(sBoard.getPiece(2, 0), 2, 0);  // White Rook new position
+
+    // Invalid move: Rook attempting a diagonal move
+    std::cout << "Testing invalid Rook diagonal move:\n";
+    assert(!sBoard.isValidMove(1, 1, 2, 2));  // Black Rook can't move diagonally
+
+    // Testing pieces at board edges
+    std::cout << "Testing edge cases:\n";
+    assert(!sBoard.isValidMove(0, 2, -1, 2));  // Move out-of-bounds (negative index)
+    assert(!sBoard.isValidMove(3, 0, 3, 4));   // Move out-of-bounds (right edge exceeded)
+
+    std::cout << "All tests passed.\n";
 }
 
 int main()

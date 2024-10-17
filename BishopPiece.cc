@@ -10,7 +10,14 @@ namespace Student{
         this->column = column;
         }
         bool BishopPiece::canMoveToLocation(int toRow, int toColumn) { 
-            if((row == toRow) && (column == toColumn)){ 
+    
+    //        std::cout <<"row:"<< row<< "to row: "<< toRow<< std::endl;
+      //      std::cout <<"column:"<< column<< "to column: "<< toColumn<< std::endl;
+      if(toRow > board.getNumRows() || toColumn > board.getNumCols()){
+        return 0; 
+      }
+            if(row == toRow && column == toColumn){ 
+                std::cout << "didnt move if" <<std::endl;
                 return 0;
             } 
             if((abs(row-toRow)) == (abs(column - toColumn))){ 
