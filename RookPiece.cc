@@ -13,12 +13,27 @@ namespace Student{
                      if(toRow > board.getNumRows() || toColumn > board.getNumCols() || toColumn < 0 || toRow < 0){
         return 0; 
       }
+            int stepRow = (toRow > row) ? 1 : (toRow < row) ? -1 : 0;
+            int stepColumn = (toColumn > column) ? 1 : (toColumn < column) ? -1 : 0;
+
+            int currentRow = row + stepRow;
+            int currentColumn = column + stepColumn;
             if(((column == toColumn) || (row == toRow))){
+                while(currentRow != toRow || currentColumn != toColumn) {
+                    ChessPiece* pieceInPath = board.getPiece(currentRow, currentColumn);
+                    if(pieceInPath != nullptr) { 
+                        if(pieceInPath->color == color) { 
+                            return 0;
+                        }
+                    }
+                    currentRow += stepRow;
+                    currentColumn += stepColumn;
+                }
+
                   if((board.getPiece(toRow, toColumn) != nullptr)){
                         if(board.getPiece(toRow, toColumn)->color == color) { 
                             return 0;
                         }
-                        return 1;
                   }
     //            printf("in row");
                 return 1;
@@ -27,7 +42,6 @@ namespace Student{
             
             return 0; 
             }
-        
         Type getType() { 
             return Rook;
         }
