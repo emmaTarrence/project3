@@ -10,21 +10,24 @@ namespace Student{
         this->column = column;
         }
         bool RookPiece::canMoveToLocation(int toRow, int toColumn) { 
-            std::cout<<"in Rook"<< std::endl;
-      //                  std::cout<< row << toRow << std::endl;
-                  if(toRow > board.getNumRows() || toColumn > board.getNumCols() || toColumn < 0 || toRow < 0){
+                     if(toRow > board.getNumRows() || toColumn > board.getNumCols() || toColumn < 0 || toRow < 0){
         return 0; 
       }
-            if(((column == toColumn))){
-       //         printf("incolumn");
-                return 1;
-            }
-              if(((row == toRow))){
+            if(((column == toColumn) || (row == toRow))){
+                  if((board.getPiece(toRow, toColumn) != nullptr)){
+                        if(board.getPiece(toRow, toColumn)->color == color) { 
+                            return 0;
+                        }
+                        return 1;
+                  }
     //            printf("in row");
                 return 1;
+                        
             }
+            
             return 0; 
-        }
+            }
+        
         Type getType() { 
             return Rook;
         }

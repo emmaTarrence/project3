@@ -10,10 +10,7 @@ namespace Student{
         this->column = column;
         }
         bool BishopPiece::canMoveToLocation(int toRow, int toColumn) { 
-        //    std::cout<<"in Bishop"<< std::endl;
     
-            //std::cout <<"row:"<< row<< "to row: "<< toRow<< std::endl;
-            //std::cout <<"column:"<< column<< "to column: "<< toColumn<< std::endl;
       if(toRow > board.getNumRows() || toColumn > board.getNumCols()){
         return 0; 
       }
@@ -21,8 +18,17 @@ namespace Student{
                   return 0;
             } 
             if((abs(toRow-row)) == (abs(toColumn-column))){ 
-                return 1;
+                    if((board.getPiece(toRow, toColumn) != nullptr)){
+                        if(board.getPiece(toRow, toColumn)->color == color) { 
+                            return 0; 
+                        }
+                        return 1;
+                    }
+                    return 1;
             }
+            
+            
             return 0;
         }
-    }
+
+}

@@ -27,7 +27,12 @@ namespace Student{
             if((color == White) && (row == toRow) && (column > toColumn)){
                 // need to figure oout what n should be, need to add this back in but idk now rn 
                 if((row == board.getNumRows()) &&((toColumn == (column - 1)) || (toColumn == (column - 2)))){ 
+                    if((board.getPiece(toRow, toColumn) != nullptr)){
+                        if(board.getPiece(toRow, toColumn)->color == color) { 
+                            return 0; 
+                        }
                     return 1; 
+                    }
                 }
                 else if((column - 1) == toColumn) { 
                     return 1; 
