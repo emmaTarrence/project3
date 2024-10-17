@@ -49,6 +49,7 @@ namespace Student
          */
         int getNumCols() { return numCols; }
 
+         ~ChessBoard();
         /**
          * @return
          * Pointer to a piece.

@@ -80,7 +80,13 @@ bool ChessBoard::movePiece(int fromRow, int fromColumn, int toRow, int toColumn)
     }
     return false;
 }
-
+   ChessBoard::~ChessBoard(){
+    for( int i = numRows; i >= 0 ; i--) { 
+        for(int j = numCols; j>= 0; j--){
+        delete board[i][j];
+        }
+    }
+   }
 bool ChessBoard::isValidMove(int fromRow, int fromColumn, int toRow, int toColumn){
     ChessPiece* piece = board[fromRow][fromColumn];
     if(piece !=nullptr) {
