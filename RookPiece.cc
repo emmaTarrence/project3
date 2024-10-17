@@ -10,7 +10,7 @@ namespace Student{
         this->column = column;
         }
         bool RookPiece::canMoveToLocation(int toRow, int toColumn) { 
-            if(((row == toRow) || (column == toColumn)) &!((row == toRow)&(column == toColumn))){
+            if(((row == toRow) || (column == toColumn)) &!((row == toRow && column == toColumn))){
                 return 1;
             }
             return 0; 

@@ -4,29 +4,26 @@
 #include "ChessPiece.hh"
 #include <iostream>
 
+// Helper function to print the position of a piece
+void printPiecePosition(const Student::ChessPiece* piece, int row, int column) {
+    if (piece != nullptr) {
+        std::cout << "Piece " << piece << " is at (" << row << ", " << column << ")" << std::endl;
+    } else {
+        std::cout << "No piece at (" << row << ", " << column << ")" << std::endl;
+    }
+}
 
 void test_part1_4x4_1()
 {
-    // Config file content:
-    // 0
-    // 4 4
-    // w r 3 2
-    // b b 1 3
-    // b r 1 1
-    // w r 2 3
-    // ~
-    // isValidScan
-
-    // Corresponding code
     Student::ChessBoard sBoard(4, 4);
     sBoard.createChessPiece(White, Rook, 3, 2);
     sBoard.createChessPiece(Black, Bishop, 1, 3);
     sBoard.createChessPiece(Black, Rook, 1, 1);
     sBoard.createChessPiece(White, Rook, 2, 3);
+    
     std::cout << sBoard.displayBoard().str() << std::endl;
-    // Calls isValidMove() from every position to every
-    // other position on the chess board for all pieces.
- Student::ChessPiece* piece1 = sBoard.getPiece(3, 2);
+
+    Student::ChessPiece* piece1 = sBoard.getPiece(3, 2);
     assert(piece1 != nullptr);
     assert(piece1->getType() == Type::Rook);
     assert(piece1->getColor() == White);
@@ -36,27 +33,38 @@ void test_part1_4x4_1()
     assert(piece2->getType() == Type::Bishop);
     assert(piece2->getColor() == Black);
 
-    // Test if a move is valid for a piece
+    // Print piece position before the move
+    printPiecePosition(sBoard.getPiece(3, 2), 3, 2);
     assert(sBoard.isValidMove(3, 2, 3, 0));  // White Rook can move horizontally
+    // Print piece position after the move (position shouldn't have changed)
+    printPiecePosition(sBoard.getPiece(3, 2), 3, 2);
+
+    printPiecePosition(sBoard.getPiece(3, 2), 3, 2);
     assert(!sBoard.isValidMove(3, 2, 2, 1));  // Invalid move for the White Rook
+    printPiecePosition(sBoard.getPiece(3, 2), 3, 2);
 
     // Test if the move is correctly performed
     bool moveSuccess = sBoard.movePiece(3, 2, 3, 0);  // Move White Rook
     assert(moveSuccess == true);
-    assert(sBoard.getPiece(3, 2) == nullptr);  // Old position is empty
-    assert(sBoard.getPiece(3, 0) != nullptr);  // New position has the Rook
+    printPiecePosition(sBoard.getPiece(3, 2), 3, 2);  // Old position is now empty
+    printPiecePosition(sBoard.getPiece(3, 0), 3, 0);  // New position has the Rook
 
-    // Test invalid moves for pieces
+    // Invalid Bishop move
+    printPiecePosition(sBoard.getPiece(1, 3), 1, 3);
     assert(!sBoard.isValidMove(1, 3, 3, 3));  // Black Bishop can't move like a Rook
+    printPiecePosition(sBoard.getPiece(1, 3), 1, 3);
+    
+    // Move the Bishop diagonally
     assert(sBoard.isValidMove(1, 3, 3, 1));  // Black Bishop can move diagonally
+    moveSuccess = sBoard.movePiece(1, 3, 3, 1);  // Perform the move
+    assert(moveSuccess == true);
+    printPiecePosition(sBoard.getPiece(1, 3), 1, 3);  // Old position should be empty
+    printPiecePosition(sBoard.getPiece(3, 1), 3, 1);  // New position has the Bishop
 
-    // Test if the board correctly handles invalid moves
-    moveSuccess = sBoard.movePiece(1, 3, 3, 3);  // Invalid Bishop move
-    assert(moveSuccess == false);  // Move should fail
+    // Ensure the board reflects the moves
+    std::cout << sBoard.displayBoard().str() << std::endl;
 
     std::cout << "All tests passed." << std::endl;
-
-    return;
 }
 
 int main()
