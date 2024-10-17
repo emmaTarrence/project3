@@ -20,7 +20,12 @@ namespace Student
             return Type::Rook; 
         }
                     const char *toString() override {
+                        if(color == White){
         return "♖"; 
+                        }
+                        else{ 
+                            return "♜";
+                        }
             }
     };
 }

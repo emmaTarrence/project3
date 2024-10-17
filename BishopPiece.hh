@@ -21,7 +21,12 @@ namespace Student
             return Type::Bishop; 
         }
             const char *toString() override {
+                if(color == White){
         return "♗"; 
+                }
+                else{ 
+                    return "♝";
+                }
             }
     };
     }

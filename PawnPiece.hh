@@ -20,7 +20,13 @@ namespace Student
             return Type::Pawn; 
         }
                     const char *toString() override {
+                        if(color == White) { 
         return "♙"; 
+                        }
+                        else{
+                            return "♟";
+                        }
+
             }
     };
 }
