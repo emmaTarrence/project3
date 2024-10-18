@@ -11,17 +11,17 @@ namespace Student{
         }
         bool PawnPiece::canMoveToLocation(int toRow, int toColumn) { 
             if(toRow != row) { 
-            if((abs(toRow - row) == abs(toColumn - column)) && (abs(toRow - row) == 1)) { 
-              //  printf("in if 1");
-                
-                if(board.getPiece(toRow, toColumn)){ 
-   //                 printf("in if 2");
-                    if(board.getPiece(toRow,toColumn)->color == !color){
-     //                   printf("in if 3");
-                    return 1;
-                }
+       if(abs(toRow - row) == 1 && abs(toColumn - column) == 1) {
+            if(board.getPiece(toRow, toColumn)) {
+                // Black pieces capture by moving to a higher row, white pieces to a lower row
+                if((color == Black && toRow > row) || (color == White && toRow < row)) {
+                    if(board.getPiece(toRow, toColumn)->color != color) {
+                        return 1; // Capture valid if the piece is of the opposite color
+                    }
                 }
             }
+        }
+
             }
 
         if(toRow > board.getNumRows() || toColumn > board.getNumCols()){
