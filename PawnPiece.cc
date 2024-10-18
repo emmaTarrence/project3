@@ -30,14 +30,15 @@ namespace Student{
             if(board.getPiece(toRow, toColumn)){
                     return 0;
                 }
-                if((toRow == row + 2) || (toRow == row - 2) ) { 
+
+            
+      //A black piece can move in increasing row number (downwards in the figure).
+               if((color == Black) && ((row < toRow) && (column == toColumn))){
+                                if((toRow == row + 2)) { 
                    if(board.getPiece(toRow - 1, toColumn)) { 
                         return 0; 
                     }
                 }
-            
-      //A black piece can move in increasing row number (downwards in the figure).
-               if((color == Black) && ((row < toRow) && (column == toColumn))){
                  //  printf("in BLack");             
 //A black piece on row 1 can move 1 or 2 steps along the same column.
                 if((((row + 2) == toRow) || ((toRow == (row + 1))))&&(row== 0)) {
@@ -49,6 +50,11 @@ namespace Student{
             }
 //A white piece can move in decreasing row number (upwards in the figure).
  if((color == White) && (row > toRow) && (column == toColumn)){
+                    if((toRow == row - 2)) { 
+                   if(board.getPiece(toRow + 1, toColumn)) { 
+                        return 0; 
+                    }
+                }
     
 //A white piece on row n-2 can move 1 or 2 steps along the same column.
                 if((row == (board.getNumRows() - 2)) && ((toRow == (row - 1)) || (toRow == (row - 2)))){ 
