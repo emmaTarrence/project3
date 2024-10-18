@@ -10,6 +10,14 @@ namespace Student{
         this->column = column;
         }
         bool PawnPiece::canMoveToLocation(int toRow, int toColumn) { 
+
+            if(abs(toRow - row) == abs(toColumn - column) && ((toRow - row) == 1)) { 
+                if(board.getPiece(toRow, toColumn)){ 
+                    return 1;
+                }
+            }
+        
+
         if(toRow > board.getNumRows() || toColumn > board.getNumCols()){
             return 0; 
         }
