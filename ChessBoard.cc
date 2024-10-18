@@ -91,7 +91,7 @@ ChessBoard::~ChessBoard() {
 bool ChessBoard::isValidMove(int fromRow, int fromColumn, int toRow, int toColumn){
     ChessPiece* piece = board[fromRow][fromColumn];
     if((fromRow == toRow) &&( fromColumn == toColumn)) return 0;
- //   if((toRow < 0) || (toColumn < 0) ) return 0;
+    if((toRow < 0) || (toColumn < 0) ) return 0;
     if(piece !=nullptr) {
         return piece->canMoveToLocation(toRow, toColumn);
     }
