@@ -20,8 +20,10 @@ void test_part1_4x4_1()
 
     // Corresponding code
     Student::ChessBoard sBoard(4, 4);
+    sBoard.createChessPiece(Black, Bishop, 0, 1);
+    sBoard.createChessPiece(Black, Bishop, 1, 1);
+    sBoard.createChessPiece(Black, Bishop, 2, 1);
     sBoard.createChessPiece(White, Pawn, 2, 0);
-    sBoard.createChessPiece(Black, Pawn, 1, 0);
     std::cout << sBoard.displayBoard().str() << std::endl;
     // Calls isValidMove() from every position to every
     // other position on the chess board for all pieces.

@@ -11,16 +11,18 @@ namespace Student{
         }
         bool PawnPiece::canMoveToLocation(int toRow, int toColumn) { 
             if(toRow != row) { 
-            if(abs(toRow - row) == abs(toColumn - column) && ((toRow - row) == 1)) { 
+            if((abs(toRow - row) == abs(toColumn - column)) && (abs(toRow - row) == 1)) { 
+              //  printf("in if 1");
+                
                 if(board.getPiece(toRow, toColumn)){ 
+   //                 printf("in if 2");
                     if(board.getPiece(toRow,toColumn)->color == !color){
+     //                   printf("in if 3");
                     return 1;
                 }
                 }
             }
             }
-            
-
 
         if(toRow > board.getNumRows() || toColumn > board.getNumCols()){
             return 0; 
@@ -49,7 +51,7 @@ namespace Student{
  if((color == White) && (row > toRow) && (column == toColumn)){
     
 //A white piece on row n-2 can move 1 or 2 steps along the same column.
-                if((row == (board.getNumRows() - 1)) && ((toRow == (row - 1)) || (toRow == (row - 2)))){ 
+                if((row == (board.getNumRows() - 2)) && ((toRow == (row - 1)) || (toRow == (row - 2)))){ 
                     return 1; 
                     }
                 
