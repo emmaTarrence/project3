@@ -30,7 +30,7 @@ namespace Student{
             if(board.getPiece(toRow, toColumn)){
                     return 0;
                 }
-                if(toRow == row + 2 ) { 
+                if((toRow == row + 2) || (toRow == row - 2) ) { 
                    if(board.getPiece(toRow - 1, toColumn)) { 
                         return 0; 
                     }
