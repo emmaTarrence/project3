@@ -33,10 +33,10 @@ namespace Student{
                         }
                      
                     }
-                
+        
       //A black piece can move in increasing row number (downwards in the figure).
-               if((color == Black) && (row == toRow) && (column > toColumn)){
-                if(((column + 2) == toColumn) || (toColumn == (column + 1))&&(column== 0)) {
+               if((color == Black) && ((row == toRow) && (column > toColumn))){
+                if(((column + 2) == toColumn) || ((toColumn == (column + 1))&&(column== 0))) {
                     return 1;                     
                 }
                 if((toColumn == (column + 1))){
@@ -62,4 +62,5 @@ namespace Student{
            
             return 0;
         }
-    }
+}
+    
